@@ -8,7 +8,7 @@ import "sort"
 
 // Queue is an ordered queue of calls. The oldest calls are at the beginning,
 // and the newest calls are at the end. Age is determined by comparing the
-// number value in each call.
+// number of each call.
 type Queue []Call
 
 // Push inserts the call c at the end of the queue without verifying the
@@ -17,9 +17,9 @@ func (q *Queue) Push(c Call) {
 	*q = append(*q, c)
 }
 
-// Add inserts the call c into the queue in its correct position. The
+// Insert inserts the call c into the queue in its correct position. The
 // complexity is O(log(n)) where n = len(q).
-func (q *Queue) Add(c Call) {
+func (q *Queue) Insert(c Call) {
 	*q = append(*q, c)
 	q.up(len(*q) - 1)
 }

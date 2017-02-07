@@ -2,7 +2,7 @@ package calltracker
 
 import "time"
 
-// Value is a point-in-time snapshot of oustanding calls. The calls are ordered
+// Value is a point-in-time view of outstanding calls. The calls are ordered
 // from oldest to newest.
 type Value []Call
 
@@ -36,8 +36,7 @@ func (v Value) Min() time.Duration {
 	return min
 }
 
-// Len returns the current queue length, which is the number of
-// currently outstanding calls.
+// Len returns the total number of outstanding calls.
 func (v Value) Len() int {
 	return len(v)
 }

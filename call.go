@@ -13,7 +13,7 @@ func (c Call) Number() uint64 {
 	return c.number
 }
 
-// When returns time at which the call started.
+// When returns the time at which the call started.
 func (c Call) When() time.Time {
 	return c.when
 }
