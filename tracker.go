@@ -72,5 +72,5 @@ func (t *Tracker) remove(number uint64) {
 		t.queue.Remove(i)
 	}
 	t.mutex.Unlock()
-	fmt.Printf("Removed %v\n", i)
+	fmt.Printf("Removed %v for number %d\n", i, number)
 }
