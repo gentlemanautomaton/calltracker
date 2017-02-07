@@ -87,10 +87,12 @@ func (t *Tracker) Subscribe(s Subscriber) {
 func (t *Tracker) remove(number uint64) {
 	t.mutex.Lock()
 	i := t.queue.Index(number)
-	if i >= 0 {
-		t.queue.Remove(i)
-		t.notify()
+	if i < 0 {
+		t.mutex.Unlock()
+		panic("tracker has attempted to remove an index more than once.")
 	}
+	t.queue.Remove(i)
+	t.notify()
 	t.mutex.Unlock()
 }
 
@@ -108,10 +110,12 @@ func (t *Tracker) notify() {
 	copy(subscribers, t.subscribers)
 
 	var update Update
+	update.Sequence = t.sequence
 	update.Value = make(Value, len(t.queue))
 	copy(update.Value, t.queue)
 
-	for _, s := range subscribers {
+	for i := range subscribers {
+		s := subscribers[i]
 		go s(update)
 	}
 
