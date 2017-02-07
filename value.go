@@ -36,6 +36,26 @@ func (v Value) Min() time.Duration {
 	return min
 }
 
+// Max returns the greatest amount of time that has elapsed for any one of the
+// oustanding calls. If there are no outstanding calls it will return a duration
+// of zero.
+func (v Value) Max() time.Duration {
+	length := len(v)
+	if length == 0 {
+		return time.Duration(0)
+	}
+
+	now := time.Now()
+	max := now.Sub(v[0].when)
+	for i := 1; i < length; i++ {
+		elapsed := now.Sub(v[i].when)
+		if elapsed > max {
+			max = elapsed
+		}
+	}
+	return max
+}
+
 // Len returns the total number of outstanding calls.
 func (v Value) Len() int {
 	return len(v)
