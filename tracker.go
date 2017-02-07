@@ -67,7 +67,7 @@ func (t *Tracker) Value() (value Value) {
 
 func (t *Tracker) remove(number uint64) {
 	t.mutex.Lock()
-	i := t.queue.Find(number)
+	i := t.queue.Index(number)
 	if i >= 0 {
 		t.queue.Remove(i)
 	}

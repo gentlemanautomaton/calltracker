@@ -23,9 +23,9 @@ func (q *Queue) Remove(i int) {
 	*q = append((*q)[:i], (*q)[i+1:]...)
 }
 
-// Find returns the index of the first call with the given number in the queue.
+// Index returns the index of the first call with the given number in the queue.
 // It will return -1 if such a call is not present in the queue.
-func (q Queue) Find(number uint64) int {
+func (q Queue) Index(number uint64) int {
 	n := len(q)
 	i := sort.Search(n, func(i int) bool { return q[i].number >= number })
 	if i < n && q[i].number == number {
