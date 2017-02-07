@@ -66,7 +66,7 @@ func Example() {
 		// Grab a snapshot of the current call backlog.
 		v := t.Value()
 		// Report values
-		fmt.Printf("%d calls outstanding. Delay min: %v max: %v: combined: %v\n", v.Len(), v.Min(), v.Max(), v.Elapsed())
+		fmt.Printf("%d calls outstanding. Elapsed min: %v max: %v: combined: %v\n", v.Len(), v.MinElapsed(), v.MaxElapsed(), v.Elapsed())
 		// Check whether all calls have finished.
 		if v.Len() == 0 {
 			break

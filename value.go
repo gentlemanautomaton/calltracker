@@ -16,10 +16,10 @@ func (v Value) Elapsed() time.Duration {
 	return total
 }
 
-// Min returns the smallest amount of time that has elapsed for any one of the
-// oustanding calls. If there are no outstanding calls it will return a duration
-// of zero.
-func (v Value) Min() time.Duration {
+// MinElapsed returns the smallest amount of time that has elapsed for any one
+// of the outstanding calls. If there are no outstanding calls it will return
+// a duration of zero.
+func (v Value) MinElapsed() time.Duration {
 	length := len(v)
 	if length == 0 {
 		return time.Duration(0)
@@ -36,10 +36,10 @@ func (v Value) Min() time.Duration {
 	return min
 }
 
-// Max returns the greatest amount of time that has elapsed for any one of the
-// oustanding calls. If there are no outstanding calls it will return a duration
-// of zero.
-func (v Value) Max() time.Duration {
+// MaxElapsed returns the greatest amount of time that has elapsed for any one
+// of the outstanding calls. If there are no outstanding calls it will return
+// a duration of zero.
+func (v Value) MaxElapsed() time.Duration {
 	length := len(v)
 	if length == 0 {
 		return time.Duration(0)
